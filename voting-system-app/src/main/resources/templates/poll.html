@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:https="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://maxcdn.bootstrapapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" rel="stylesheet">
+  <title th:text="${poll.question}">Poll</title>
+</head>
+<body>
+    <div class="container">
+      <h2 class="mt-4 mb-3" th:text="${poll.question}"></h2>
+      <form th:action="@{/vote}" method="post">
+        <input type="hidden" name="pollId" th:value="${poll.id}">
+        <div class="form-group">
+            <label for="options">Options:</label>
+          <select id="options" name="optionId" class="form-control">
+            <option th:each="option : ${poll.options}" th:value="${option.id}" th:text="${option.desc}"></option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Vote</button>
+      </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
